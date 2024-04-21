@@ -1,17 +1,21 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import dotenv  from "dotenv";
 import axios from "axios";
 
 const app =express();
+dotenv.config();
 const port = 3000;
 const db = new pg.Client({ 
-    user: "postgres",
-    host: "localhost",
-    database: "books",
-    password: "Humaid@29",
-    port: 5432
-})
+    user: process.env.USER_NAME,
+    host: process.env.HOST,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: process.env.PORT
+});
+
+
 
 db.connect(); //connects you to the postgreSQL database books.
 app.use(bodyParser.urlencoded({extended:true}));
@@ -90,6 +94,7 @@ app.post("/register",async(req,res)=>{ //It will register all the details in the
   const reviews = req.body.reviews;
   const rating = parseInt(req.body.rate);
   const date = req.body.date;
+
   await db.query("INSERT INTO booklist (bookname,reviews,rating,read_date,isbn) VALUES ($1,$2,$3,$4,$5)",[title,reviews,rating,date,isbn]);
   res.redirect("/");
 
