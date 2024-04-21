@@ -6,7 +6,8 @@ import axios from "axios";
 
 const app =express();
 dotenv.config();
-const port = process.env.port;
+const port = process.env.LISTEN_PORT;
+console.log(process.env.LISTEN_PORT);
 const db = new pg.Client({ 
     user: process.env.USER_NAME,
     host: process.env.HOST,
@@ -171,6 +172,6 @@ app.get("/delete/:id",async(req,res)=>{ //It will delete the books details from 
   res.redirect("/");
 });
 
-app.listen(port, ()=>{
+app.listen(port,()=>{
     console.log(`The server is listening at port ${port}.`);
 });
