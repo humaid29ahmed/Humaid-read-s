@@ -13,10 +13,9 @@ const db = new pg.Client({
     host: process.env.HOST,
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
-    port: process.env.PORT,
-    ssl: process.env.SSL
+    port: process.env.DBPORT,
+    ssl:process.env.SSL
 });
-
 
 
 db.connect(); //connects you to the postgreSQL database books.
