@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %> <!--When the user clicks the notes button of any book in the homepage. It displays all the notes and reviews of that particular book.-->
+<div class="container book-review">
+
+    <div class="row">
+
+        <div class="col-lg-2">
+            <% if(imageData==='error'){ %>
+                <img class="mb-3" src="/images/No_Cover.jpg" width="180" height="276" alt="Book Image" >
+                <% } else { %>
+               <img class="mb-3" src="data:image/jpeg;charset=utf-8;base64,<%=imageData%>" alt="Book Image" >
+               <% } %>
+               <div class="buttons">
+                <a class="btn btn-primary btn-md"style="font-family:sans-serif" href="/addNotes/<%= data[0].id %>" role="button"> Add Notes </a>
+                <a class="btn btn-primary btn-md"style="font-family:sans-serif" href="/update/<%= data[0].id %>" role="button"> Update Notes</a>
+             </div>
+        </div>
+        <div class="col-lg-10">
+            <h1><%= data[0].bookname %></h1>
+            <p class="mb-5"><%= data[0].reviews %></p>
+            <h2>Notes for this Book.</h2>
+            <p><%= notes.notes %></p>
+
+            
+        </div>
+
+    </div>
+
+</div>
+<%- include("partials/footer.ejs") %>

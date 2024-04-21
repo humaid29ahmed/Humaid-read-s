@@ -1,0 +1,10 @@
+<%- include("partials/header.ejs") %><!--This form is used to add their Notes as an Option-->
+<div class="container form-styling">
+    <h1>Add Your Notes</h1>
+<form action="/addNotes/<%=id%>" method="post">
+    <label for="notes" style="font-size: 40px;"><strong>Notes</strong></label><br>
+    <textarea name="notes" id="notes" cols="100" rows="20" placeholder="Enter your notes" required></textarea><br>
+    <input type="submit" class="btn btn-primary mb-3 btn-lg" value="Submit">
+</form>
+</div>
+<%- include("partials/footer.ejs") %>

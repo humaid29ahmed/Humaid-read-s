@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+.main-section{ /* It is the Styling for the homepage*/
+    background-color: #0CC0DF;
+    font-family:"Alice", serif;
+    color: #545454;
+}
+
+.main-header{ /*It is used in the first Section of the homepage Where it centers the texts*/
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+    
+}
+.main-sort-button{  /*This is used for the buttons in the homepage where the buttons is used for sorting on the basis of recency, title, rating */
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-wrap: wrap;
+    gap: 4rem;
+    justify-content: center;
+}
+.add-section{  /*This is used in the homepage section where we are adding the books*/
+    background-color: #5CE1E6;
+    color: #545454;
+    font-family:"Alice", serif;
+}
+
+.book-review{ /* This styling is used in the book reviews section where all the books reviews will be there.*/
+    background-color: #0CC0DF;
+    font-family:"Alice", serif;
+    color: #545454;
+    padding: 50px 0 50px 0;
+}
+
+.form-styling{ /*This styling is used in all the forms that is there in the website.*/
+
+    font-size: larger;
+    font-weight: bold;
+    color: #545454;
+    font-family: "Alice", serif;
+
+}
+.date-rating{ /*This is used to keep the rating and date in the same line and make the buttons responsive with change in screen size*/
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+.book-list{ /*This is used in the homepage book-reviews div where the books reviews and all other buttons are aligned and styled*/
+    margin: 10px 0 10px 0;
+    padding: 20px 0 20px 0;
+    background-color: #5CE1E6;
+    border-radius: 25px;
+}
+
+.buttons{ /*This is used to align the delete, notes, add notes, updates notes buttons in the index.ejs and notes.ejs*/
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    gap: 10px;
+}
+
+.footer-adjustment{ /*All the remaining things all the name suggest is related to alignments of footer of this websites*/
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0CC0DF;
+}
+main{
+    flex: 1;
+}
+footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+}

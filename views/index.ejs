@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %> <!--This is the Home page of the Website*-->
+<section class=" main-section">
+    <div class= "container">
+        <div class="row">
+             <div class = "main-header px-0 py-3 col-lg-6">
+              <div>
+                <h1><strong>Humaid read's</strong></h1>
+                <h3>Here you will be finding all the interesting books that I have read and  my reviews on each and every book that I have spent time reading.</h3>
+              </div> 
+              </div>
+             <div class="py-3 d-flex align-items-center justify-content-center col-lg-6">
+               <img src="images/book-main.png" width = 400 height = 400 alt="book-main">
+             </div>
+        </div>
+
+    </div>
+</section>
+<section class="add-section">
+  <div class = "container">
+    <div class="row py-4">
+      <div class="main-header px-0 col-lg-6">
+        <div>
+        <h2 class="pb-4">You can add any new books that you have read.</h2>
+        <a class="btn btn-primary btn-lg"style="font-family:sans-serif" href="/add" role="button">   Add    </a>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center col-lg-6">
+        <img src="images/Add-book.jpg" style="border-radius: 50%;" width="300" height="300" alt="book-image">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="book-review">
+<h2><strong>Book review's</strong></h1>
+  <div class="container main-sort-button">
+      <a href="/recency" class="btn btn-primary btn-md" width="100px">Recency</a>
+      <a href="/title" class="btn btn-primary btn-md" width="100px">Tilte</a>
+      <a href="/rating" class="btn btn-primary btn-md" width="100px">Rating</a>
+  </div>
+  <% for(let i = 0 ; i<bookData.length; i++) { %>
+  <div class="container book-list">
+    <div class="row">
+         <div class="col-lg-2">
+          <% if(imageData[i]==='error'){ %>
+            <img class="mb-3" src="images/No_Cover.jpg" width="180" height="276" alt="Book Image" >
+            <% } else { %>
+           <img class="mb-3" src="data:image/jpeg;charset=utf-8;base64,<%=imageData[i]%>" alt="Book Image" >
+           <% } %>
+           <div class="buttons">
+              <a class="btn btn-primary btn-md"style="font-family:sans-serif" href="/notes/<%= bookData[i].id %>" role="button"> Notes </a>
+              <a class="btn btn-primary btn-md"style="font-family:sans-serif" href="/delete/<%= bookData[i].id %>" role="button">  Delete</a>
+           </div>
+          </div>
+        <div class="col-lg-10">
+          <h1><strong><%=bookData[i].bookname%></strong></h1>
+          <div class="date-rating">
+            <% const date = new Date(bookData[i].read_date) %>
+            <h2><strong>Date: <%= date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()%></strong></h2>
+            <h2><strong>Rating: <%= bookData[i].rating %>/10</strong></h2>
+          </div>
+          <p><%=bookData[i].reviews%></p>
+        </div>
+    </div>
+  </div>
+  <% } %>
+</section>
+<%- include("partials/footer.ejs") %>
