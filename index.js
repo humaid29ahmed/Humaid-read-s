@@ -6,7 +6,7 @@ import axios from "axios";
 
 const app =express();
 dotenv.config();
-const port = 3000;
+const port = process.env.port;
 const db = new pg.Client({ 
     user: process.env.USER_NAME,
     host: process.env.HOST,
