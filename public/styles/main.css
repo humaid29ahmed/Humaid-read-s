@@ -6,10 +6,10 @@
 }
 
 .main-header{ /*It is used in the first Section of the homepage Where it centers the texts*/
-display:flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     
 }
 .main-sort-button{  /*This is used for the buttons in the homepage where the buttons is used for sorting on the basis of recency, title, rating */
@@ -37,9 +37,31 @@ align-items: center;
 
     font-size: larger;
     font-weight: bold;
+    background-color: #5CE1E6;
+    padding: 50px;
+    margin: 50px;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px 1px black;
     color: #545454;
     font-family: "Alice", serif;
 
+}
+@media(max-width:450px)
+{
+    .form-styling{
+        display: block;
+        width: 350px;
+        padding: 20px;
+    }
+
+    .sizing{
+        width:300px !important;
+    }
+}
+.form-centering{ /*Used for Centering the form*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .date-rating{ /*This is used to keep the rating and date in the same line and make the buttons responsive with change in screen size*/
 
@@ -51,6 +73,7 @@ align-items: center;
 .book-list{ /*This is used in the homepage book-reviews div where the books reviews and all other buttons are aligned and styled*/
     margin: 10px 0 10px 0;
     padding: 20px 0 20px 0;
+    box-shadow: 1px 1px 1px 1px black;
     background-color: #5CE1E6;
     border-radius: 25px;
 }

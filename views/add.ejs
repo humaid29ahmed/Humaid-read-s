@@ -1,15 +1,16 @@
 <%- include("partials/header.ejs") %><!--This form is used to add new books in the database-->
-<div class="container form-styling">
+<div class="container form-centering">
+<div class="form-styling">
 <form action="/register" method="post">
 
     <label class="mb-3" for="title">Enter the title of your book.</label><br>
-    <input class="mb-3" id="title" name="title" size="100" type="text" placeholder="Type the title" required><br>
+    <input class="mb-3 sizing" id="title" name="title" size="50" type="text" placeholder="Type the title" required><br>
     <label class="mb-3" for="isbn">Enter the ISBN number of the book.</label><br>
-    <input class="mb-3" id="isbn" type="text" size="100" name="isbn" placeholder="Type the ISBN number" required><br>
+    <input class="mb-3 sizing" id="isbn" type="text" size="50" name="isbn" placeholder="Type the ISBN number" required><br>
     <label class="mb-3" for="reviews">Enter your reviews on this book.</label><br>
-    <textarea class="mb-3" id="reviews" name="reviews" cols="100" rows="10" placeholder="Enter your reviews" required></textarea><br>
+    <textarea class="mb-3 sizing" id="reviews" name="reviews" cols="50" rows="5" placeholder="Enter your reviews" required></textarea><br>
     <label class="mb-3" for="rating">Give your rating.</label><br>
-    <select class="mb-3" name="rate" style="width: 760px;" id="rating"  required>
+    <select class="mb-3 sizing" name="rate" style="width: 550px;" id="rating"  required>
         <option selected value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -22,9 +23,10 @@
         <option value="10">10</option>
     </select><br>
     <label class="mb-3" for="date">Enter the date.</label> <br>
-    <input type="date" class="mb-3" id="date" name="date" required><br>
+    <input type="date" class="mb-3 sizing" id="date" name="date" required><br>
     <input type="submit" class="btn btn-primary mb-3 btn-lg" value="Submit">
 
 </form>
+</div>
 </div>
 <%- include("partials/footer.ejs") %>
