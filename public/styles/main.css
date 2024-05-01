@@ -46,7 +46,7 @@
     font-family: "Alice", serif;
 
 }
-@media(max-width:450px)
+@media(max-width:413px)
 {
     .form-styling{
         display: block;
@@ -56,6 +56,9 @@
 
     .sizing{
         width:300px !important;
+    }
+    .main-sort-button{
+        flex-direction: column;
     }
 }
 .form-centering{ /*Used for Centering the form*/
