@@ -14,7 +14,9 @@ const db = new pg.Client({
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
     port: process.env.DBPORT,
-    ssl:process.env.SSL
+    ssl:process.env.SSL,
+     idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
+  keepAlive: true
 });
 
 
