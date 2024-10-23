@@ -14,9 +14,7 @@ const db = new pg.Client({
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
     port: process.env.DBPORT,
-    ssl:process.env.SSL,
-     idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-  keepAlive: true
+    ssl:process.env.SSL
 });
 
 
@@ -25,7 +23,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.get("/",async(req,res)=>{    // It gets all the books covers and display all the stored content in the database.
-  const data = await db.query("SELECT * FROM booklist");
+  const data = await db.query("SELECT * FROM book_list");
   let base64data=[];
   for(let i=0; i< data.rows.length; i++)
   { 
@@ -41,7 +39,7 @@ app.get("/",async(req,res)=>{    // It gets all the books covers and display all
 });
 
 app.get("/recency", async(req,res)=>{ //  It get all the books covers and display all the sorted content based on recent date of reading a book
-  const data = await db.query("SELECT * FROM booklist ORDER BY read_date DESC");
+  const data = await db.query("SELECT * FROM book_list ORDER BY read_date DESC");
   let base64data=[];
   for(let i=0; i< data.rows.length; i++)
   { 
@@ -57,7 +55,7 @@ app.get("/recency", async(req,res)=>{ //  It get all the books covers and displa
  
 });
 app.get("/title", async(req,res)=>{ // It get all the books cover and display the sorted books data based on title in an alphabetical order
-  const data = await db.query("SELECT * FROM booklist ORDER BY bookname ASC");
+  const data = await db.query("SELECT * FROM book_list ORDER BY bookname ASC");
   let base64data=[];
   for(let i=0; i< data.rows.length; i++)
   { 
@@ -72,7 +70,7 @@ app.get("/title", async(req,res)=>{ // It get all the books cover and display th
   res.render("index.ejs",{imageData:base64data, bookData: data.rows });
  });
 app.get("/rating", async(req,res)=>{ // It didplay the books cover and all the information based on ratings in an descending order.
-  const data = await db.query("SELECT * FROM booklist ORDER BY rating DESC");
+  const data = await db.query("SELECT * FROM book_list ORDER BY rating DESC");
   let base64data=[];
   for(let i=0; i< data.rows.length; i++)
   { 
@@ -98,7 +96,7 @@ app.post("/register",async(req,res)=>{ //It will register all the details in the
   const rating = parseInt(req.body.rate);
   const date = req.body.date;
 
-  await db.query("INSERT INTO booklist (bookname,reviews,rating,read_date,isbn) VALUES ($1,$2,$3,$4,$5)",[title,reviews,rating,date,isbn]);
+  await db.query("INSERT INTO book_list (bookname,reviews,rating,read_date,isbn) VALUES ($1,$2,$3,$4,$5)",[title,reviews,rating,date,isbn]);
   res.redirect("/");
 
 
@@ -108,7 +106,7 @@ app.post("/register",async(req,res)=>{ //It will register all the details in the
 app.get("/notes/:id",async(req,res)=>{ // It will show and gives you the option of adding the notes that you have entered.
   const id = parseInt(req.params.id);
   let base64data = "";
-  const result = await db.query("SELECT * FROM booklist WHERE id = $1",[id]);
+  const result = await db.query("SELECT * FROM book_list WHERE id = $1",[id]);
   let isbn = result.rows[0].isbn;
    try{
   const result = await axios.get(`https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`,{responseType:'arraybuffer'});
@@ -169,7 +167,7 @@ app.post("/updateNotes/:id",async(req,res)=>{ // It will get the data from the u
 app.get("/delete/:id",async(req,res)=>{ //It will delete the books details from the database and redirects to the home-page.
   console.log(req.params.id);
   const id=parseInt(req.params.id);
-  await db.query("DELETE FROM booklist USING notes WHERE booklist.id = notes.id AND booklist.id = $1",[id]);
+  await db.query("DELETE FROM book_list USING notes WHERE book_list.id = notes.id AND book_list.id = $1",[id]);
   res.redirect("/");
 });
 
